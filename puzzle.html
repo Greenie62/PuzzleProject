@@ -8,8 +8,24 @@
     <script src="js/jquery-ui.js"></script>
     <script src="js/image-puzzle.js"></script>
     <script src='giphy.html'></script>
+    <script src="css/materialize.css"></script>
+    <link rel="stylesheet" href="css/materialize.min.css">
 </head>
 <body>
+ 
+ <h1>Enter your favorite artist below!</h1>
+ <form>
+    <label for='userInput'>User Request:
+       <input type='text' id='userRequest'>
+       <input type='submit' id='userSubmit'>
+    </label>
+</form>
+ <div id="justinHeader">
+     <h1>Feeling Puzzled!</h1>
+     <img src="http://worldartsme.com/images/puzzled-look-clipart-1.jpg">
+     </div>
+ </div>
+
     <div id="collage">
         <h2>Image Puzzle</h2>
         <hr />
@@ -17,14 +33,15 @@
             <h3 id="imgTitle"></h3> <hr />
             <div style="display:inline-block; margin:auto; width:95%; vertical-align:top;">
                 <ul id="sortable" class="sortable"></ul>
-                <div id="actualImageBox">  <!-- broken image placement-->
+                <!-- <div id="actualImageBox" height="284" width="284px">  broken image placement -->
                     <div id="stepBox">
                         <div>Steps:</div><div class="stepCount">0</div>
                     </div>
                     <div id="timeBox">
                         Time Taken: <span id="timerPanel"></span> secs
                     </div>
-                    <img id="actualImage" />    <!-- real image placement-->
+                    <div id='normalImageArea' height="284" width="284"><img id='normalImage' height="284" width="284"></div>
+                    <img id="actualImage" height="284" width="284"/>    <!-- real image placement-->
                     <div>Re-arrange to create a picture like this.</div>
                     <p id="levelPanel">
                         <input type="radio" name="level" id="easy" checked="checked" value="3" /> <label for="easy">Easy</label>
@@ -39,15 +56,10 @@
                 </div>
             </div>
         </div>
-        <div id='normalImageArea'><img id='normalImage'></div>   <!--ATTEMPTED TO MAKE SEPERATE CONTAINER FOR UNALTERED PIC-->
+        <!-- <div id='normalImageArea'><img id='normalImage'></div>   -->
+         <!--ATTEMPTED TO MAKE SEPERATE CONTAINER FOR UNALTERED PIC-->
 <!--Justin code/experiment-->
-        <form>
-            
-                <label for='userInput'>User Request:
-                    <input type='text' id='userRequest'>
-                    <input type='submit' id='userSubmit'>
-                </label>
-            </form>
+
 
             <!--END Experiment-->
             
@@ -68,11 +80,12 @@
         <script>
                
         $("#userSubmit").on('click',function(event){
+            $("#justinHeader").remove();
        event.preventDefault();
 
-       console.log("fired!!");
+    //    console.log("fired!!");
        var userAsked=$("#userRequest").val();
-       console.log(userAsked)
+    //    console.log(userAsked)
       // var queryUrl="http://api.giphy.com/v1/gifs/search?q=" + userAsked + "&api_key=nTv0EGtd08JY2KbjlEnIZwVsFolXRS2C&limit=5";
          var queryUrl="https://rest.bandsintown.com/artists/" + userAsked + "?app_id=codingbootcamp"
        $.ajax({
